@@ -4,6 +4,6 @@
 #include <string>
 
 void welcomeMessage(std::string name);
-void waitForStart();
+void waitForEnter();
 
 #endif

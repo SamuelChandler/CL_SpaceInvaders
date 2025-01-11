@@ -20,7 +20,7 @@ int main(int argc, char* argv[]) {
     #if __linux__
         std::cout << "Linux Version" << std::endl;
         suite = new LinuxCommandSuite(name);
-        suite->wipeScreen();
+        
 
     // Todo: Add windows Support
     // #elif _WIN32
@@ -31,7 +31,9 @@ int main(int argc, char* argv[]) {
     
     #endif
 
-    waitForStart();
+    waitForEnter();
+    suite->wipeScreen();
+
 
     return 0;
 }

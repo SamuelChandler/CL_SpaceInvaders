@@ -6,14 +6,14 @@
 // message that will welcome the player into the game
 void welcomeMessage(std::string name){
     std::cout << "Hello, " << name << "!" << std::endl;
-    std::cout << "Welcome to Space Invaders the Command Line Game!" << std::endl;
+    std::cout << "Welcome to Space Invaders the Command Line Game!\n" << std::endl;
 
+    std::cout << "Press Enter to Start the game!" << std::endl;
     return; 
 }
 
 // will stop the game until the user has requested the game to start 
-void waitForStart(){
-    std::cout << "Press enter to start the game!" << std::endl; 
+void waitForEnter(){
 
     std::string input; 
 

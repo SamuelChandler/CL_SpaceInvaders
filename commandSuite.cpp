@@ -1,6 +1,7 @@
 #include "commandSuite.h"
 #include <iostream>
 #include <string>
+#include <stdlib.h>
 
 commandSuite::commandSuite(){
     playerName = "none";
@@ -25,8 +26,10 @@ LinuxCommandSuite::LinuxCommandSuite(std::string name){
         std::cout << "command Suite created for Linux user, " << playerName << std::endl;
 }
 
+//clears the Screen
 void LinuxCommandSuite::wipeScreen() {
-    std::cout << "Wiping Linux Command Line" << std::endl;
+    system("clear");
+    // std::cout << "Screen Cleared" << std::endl;
 }
 
 
