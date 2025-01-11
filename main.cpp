@@ -8,7 +8,7 @@
 
 int main(int argc, char* argv[]) {
     std::string name = "World";
-    commandSuite suite;
+    commandSuite* suite;
 
     if (argc > 1) {
         name = argv[1];
@@ -19,7 +19,8 @@ int main(int argc, char* argv[]) {
     //determine operating system and commandsuite to use
     #if __linux__
         std::cout << "Linux Version" << std::endl;
-        suite = LinuxCommandSuite(name);
+        suite = new LinuxCommandSuite(name);
+        suite->wipeScreen();
 
     // Todo: Add windows Support
     // #elif _WIN32
