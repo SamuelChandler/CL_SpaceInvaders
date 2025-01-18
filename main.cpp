@@ -1,5 +1,8 @@
 #include <iostream>
 #include <string>
+#include <chrono> 
+#include <thread> 
+
 #include "tutorial.h"
 #include "commandSuite.h"
 
@@ -21,15 +24,16 @@ int main(int argc, char* argv[]) {
         std::cout << "Linux Version" << std::endl;
         suite = new LinuxCommandSuite(name);
         
-
     // Todo: Add windows Support
-    // #elif _WIN32
-    //     std::cout << "Windows Version" << std::endl;
+    #elif _WIN32
+        std::cout << "Windows Version" << std::endl;
+        suite = new WindowsCommandSuite(name);
     
     #else
         std::cout << "This game does not support this Operating System" << std::endl;
     
     #endif
+
 
     waitForEnter();
     suite->wipeScreen();

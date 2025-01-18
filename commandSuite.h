@@ -33,6 +33,15 @@ public:
 
 };
 
+class WindowsCommandSuite: public commandSuite{
+    
+public: 
+    WindowsCommandSuite(std::string name);
+
+    void wipeScreen() override;
+
+};
+
 
 
 #endif

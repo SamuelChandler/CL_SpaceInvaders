@@ -19,11 +19,11 @@ void commandSuite::wipeScreen(){
 
 
 LinuxCommandSuite::LinuxCommandSuite(std::string name){
-        playerName = name;
-        Version = Linux;
-        time = 0.0f;
+    playerName = name;
+    Version = Linux;
+    time = 0.0f;
 
-        std::cout << "command Suite created for Linux user, " << playerName << std::endl;
+    std::cout << "command Suite created for Linux user, " << playerName << std::endl;
 }
 
 //clears the Screen
@@ -32,4 +32,16 @@ void LinuxCommandSuite::wipeScreen() {
     // std::cout << "Screen Cleared" << std::endl;
 }
 
+WindowsCommandSuite::WindowsCommandSuite(std::string name){ 
+    playerName = name;
+    Version = windows;
+    time = 0.0f;
+
+    std::cout << "Command Suite created for Windows User, " << playerName << std::endl;
+}
+
+
+void WindowsCommandSuite::wipeScreen(){
+    system("cls");
+}
 
