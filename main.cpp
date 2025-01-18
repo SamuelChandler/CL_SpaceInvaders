@@ -31,12 +31,19 @@ int main(int argc, char* argv[]) {
     
     #else
         std::cout << "This game does not support this Operating System" << std::endl;
+        waitForEnter();
+        return 0;
     
     #endif
 
 
     waitForEnter();
     suite->wipeScreen();
+
+    while(1){
+        //std::this_thread::sleep_for(std::chrono::seconds(2));
+        suite->resetSize();
+    }
 
 
     return 0;

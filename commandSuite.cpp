@@ -1,6 +1,7 @@
 #include "commandSuite.h"
 #include <iostream>
 #include <string>
+#include <windows.h>
 #include <stdlib.h>
 
 commandSuite::commandSuite(){
@@ -15,6 +16,9 @@ commandSuite::commandSuite(std::string name){
 }
 void commandSuite::wipeScreen(){
     std::cout << "Cannot Wipe A screen with no OS defined" << std::endl;
+}
+void commandSuite::resetSize(){
+    std::cout << "Cannot Reset Screen Size without OS defined" << std::endl;
 }
 
 
@@ -33,9 +37,17 @@ void LinuxCommandSuite::wipeScreen() {
 }
 
 WindowsCommandSuite::WindowsCommandSuite(std::string name){ 
+
+    //player information
     playerName = name;
     Version = windows;
     time = 0.0f;
+
+    //set the screen size 
+    HWND console = GetConsoleWindow();
+    RECT r;
+    GetWindowRect(console, &r); //save current dimensions
+    MoveWindow(console, r.left, r.top, W_WIDTH, W_HEIGHT, TRUE);
 
     std::cout << "Command Suite created for Windows User, " << playerName << std::endl;
 }
@@ -43,5 +55,15 @@ WindowsCommandSuite::WindowsCommandSuite(std::string name){
 
 void WindowsCommandSuite::wipeScreen(){
     system("cls");
+}
+
+//sets the size of the window to the initial values
+void WindowsCommandSuite::resetSize(){
+
+    HWND console = GetConsoleWindow();
+    RECT r;
+    GetWindowRect(console, &r); //save current dimensions
+    MoveWindow(console, r.left, r.top, W_WIDTH, W_HEIGHT, TRUE);
+
 }
 

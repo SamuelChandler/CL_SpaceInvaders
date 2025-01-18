@@ -9,6 +9,12 @@ enum OS{
     Linux,
 };
 
+static const int W_WIDTH = 500;
+static const int W_HEIGHT = 600;
+
+static const int L_WIDTH = 500;
+static const int L_HEIGHT = 600;
+
 class commandSuite{
 
 public:
@@ -21,6 +27,7 @@ public:
     commandSuite(std::string name);
 
     virtual void wipeScreen();
+    virtual void resetSize();
 
 };
 
@@ -39,6 +46,7 @@ public:
     WindowsCommandSuite(std::string name);
 
     void wipeScreen() override;
+    void resetSize() override;
 
 };
 
