@@ -22,7 +22,7 @@ void commandSuite::wipeScreen(){
 void commandSuite::resetSize(){
     std::cout << "Cannot Reset Screen Size with OS undefined" << std::endl;
 }
-void commandSuite::render(){
+void commandSuite::render(gameData &data){
     std::cout << "Cannot Render when OS undefined" << std::endl;
 }
 
@@ -74,7 +74,7 @@ void WindowsCommandSuite::resetSize(){
 
 }
 
-void WindowsCommandSuite::render(){
+void WindowsCommandSuite::render(gameData &data){
 
     //Player Name and current Score
     std::cout << playerName ;
@@ -84,6 +84,22 @@ void WindowsCommandSuite::render(){
     } 
 
     std::cout << "Score: " << score << std::endl;
+
+    //render each row 
+    for(int x = 0; x < 32; x++){
+        std::cout << "1" << std::endl;
+    }
+
+    //render Player 
+    for(int x = 0; x < 45; x++){
+        if(x == data.playerPosition){
+            std::cout << "^" ;
+        }
+        else{
+            std::cout << " ";
+        }
+    }
+    std::cout << std::endl;
 
     //Increment the score to detect new render
     score++;

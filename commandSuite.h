@@ -2,6 +2,7 @@
 #define COMMANDSUITE_H
 
 #include <string>
+#include "GameData.h"
 
 enum OS{
     none, 
@@ -29,7 +30,7 @@ public:
 
     virtual void wipeScreen();
     virtual void resetSize();
-    virtual void render();
+    virtual void render(gameData &data);
 
 };
 
@@ -49,7 +50,7 @@ public:
 
     void wipeScreen() override;
     void resetSize() override;
-    void render() override;
+    void render(gameData &data) override;
 
 };
 

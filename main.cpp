@@ -5,6 +5,7 @@
 
 #include "tutorial.h"
 #include "commandSuite.h"
+#include "GameData.h"
 
 
 
@@ -12,12 +13,14 @@
 int main(int argc, char* argv[]) {
     std::string name = "World";
     commandSuite* suite;
+    gameData* data = new gameData();
+
 
     if (argc > 1) {
         name = argv[1];
     }
 
-    welcomeMessage(name);
+    
     
     //determine operating system and commandsuite to use
     #if __linux__
@@ -36,16 +39,18 @@ int main(int argc, char* argv[]) {
     
     #endif
 
-
+    //play the welcome message and start upon enter press 
+    welcomeMessage(name);
     waitForEnter();
+
     suite->wipeScreen();
 
     while(1){
-        std::this_thread::sleep_for(std::chrono::milliseconds(200));
+        std::this_thread::sleep_for(std::chrono::milliseconds(50));
         suite->resetSize();
         suite->wipeScreen();
-        suite->render();
-    }
+        suite->render(*data);
+    } 
 
 
     return 0;
