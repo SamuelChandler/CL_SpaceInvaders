@@ -83,11 +83,11 @@ void WindowsCommandSuite::render(gameData &data){
         std::cout << " ";
     } 
 
-    std::cout << "Score: " << score << std::endl;
+    std::cout << "Score: " << score << "\n";
 
     //render each row 
     for(int x = 0; x < 32; x++){
-        std::cout << "1" << std::endl;
+        std::cout << "1\n";
     }
 
     //render Player 
@@ -99,7 +99,7 @@ void WindowsCommandSuite::render(gameData &data){
             std::cout << " ";
         }
     }
-    std::cout << std::endl;
+    std::cout << std::flush;
 
     //Increment the score to detect new render
     score++;
