@@ -22,12 +22,14 @@ public:
     float time;
     OS Version;
     std::string playerName;
+    int score;
     
     commandSuite();
     commandSuite(std::string name);
 
     virtual void wipeScreen();
     virtual void resetSize();
+    virtual void render();
 
 };
 
@@ -47,6 +49,7 @@ public:
 
     void wipeScreen() override;
     void resetSize() override;
+    void render() override;
 
 };
 

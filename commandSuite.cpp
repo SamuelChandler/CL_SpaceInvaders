@@ -8,6 +8,8 @@ commandSuite::commandSuite(){
     playerName = "none";
     Version = none;
     time = 0.0f;
+    score = 0;
+    
 }
 commandSuite::commandSuite(std::string name){
     playerName = name;
@@ -15,10 +17,13 @@ commandSuite::commandSuite(std::string name){
     time = 0.0f;
 }
 void commandSuite::wipeScreen(){
-    std::cout << "Cannot Wipe A screen with no OS defined" << std::endl;
+    std::cout << "Cannot Wipe A screen with OS undefined" << std::endl;
 }
 void commandSuite::resetSize(){
-    std::cout << "Cannot Reset Screen Size without OS defined" << std::endl;
+    std::cout << "Cannot Reset Screen Size with OS undefined" << std::endl;
+}
+void commandSuite::render(){
+    std::cout << "Cannot Render when OS undefined" << std::endl;
 }
 
 
@@ -26,6 +31,7 @@ LinuxCommandSuite::LinuxCommandSuite(std::string name){
     playerName = name;
     Version = Linux;
     time = 0.0f;
+    score = 0;
 
     std::cout << "command Suite created for Linux user, " << playerName << std::endl;
 }
@@ -42,6 +48,7 @@ WindowsCommandSuite::WindowsCommandSuite(std::string name){
     playerName = name;
     Version = windows;
     time = 0.0f;
+    score = 0;
 
     //set the screen size 
     HWND console = GetConsoleWindow();
@@ -65,5 +72,20 @@ void WindowsCommandSuite::resetSize(){
     GetWindowRect(console, &r); //save current dimensions
     MoveWindow(console, r.left, r.top, W_WIDTH, W_HEIGHT, TRUE);
 
+}
+
+void WindowsCommandSuite::render(){
+
+    //Player Name and current Score
+    std::cout << playerName ;
+
+    for(int x = playerName.length(); x <45 ; x++){
+        std::cout << " ";
+    } 
+
+    std::cout << "Score: " << score << std::endl;
+
+    //Increment the score to detect new render
+    score++;
 }
 

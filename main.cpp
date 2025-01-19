@@ -41,8 +41,10 @@ int main(int argc, char* argv[]) {
     suite->wipeScreen();
 
     while(1){
-        //std::this_thread::sleep_for(std::chrono::seconds(2));
+        std::this_thread::sleep_for(std::chrono::milliseconds(200));
         suite->resetSize();
+        suite->wipeScreen();
+        suite->render();
     }
 
 
