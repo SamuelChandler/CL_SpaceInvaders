@@ -6,6 +6,7 @@
 #include "tutorial.h"
 #include "commandSuite.h"
 #include "GameData.h"
+#include "playerController.h"
 
 
 
@@ -14,6 +15,9 @@ int main(int argc, char* argv[]) {
     std::string name = "World";
     commandSuite* suite;
     gameData* data = new gameData();
+
+
+    playerController* controller = new playerController();
 
 
     if (argc > 1) {
@@ -45,6 +49,10 @@ int main(int argc, char* argv[]) {
 
     suite->wipeScreen();
 
+    //create thread for the player conroller 
+    std::thread controllerThread(&playerController::run,&controller,std::ref(data),123);
+
+
     while(1){
         std::this_thread::sleep_for(std::chrono::milliseconds(50));
         suite->resetSize();
@@ -52,6 +60,7 @@ int main(int argc, char* argv[]) {
         suite->render(*data);
     } 
 
+    controllerThread.join();
 
     return 0;
 }
