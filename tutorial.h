@@ -4,6 +4,7 @@
 #include <string>
 
 void welcomeMessage(std::string name);
+void endGameMessage();
 void waitForEnter();
 
 #endif

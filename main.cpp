@@ -66,5 +66,6 @@ int main(int argc, char* argv[]) {
 
     //end game 
     suite->wipeScreen();
+    endGameMessage();
     return 0;
 }

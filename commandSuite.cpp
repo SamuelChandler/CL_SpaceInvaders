@@ -87,7 +87,7 @@ void WindowsCommandSuite::render(gameData &data){
 
     //render each row 
     for(int x = 0; x < 32; x++){
-        std::cout << "1\n";
+        std::cout << "\n";
     }
 
     //render Player 

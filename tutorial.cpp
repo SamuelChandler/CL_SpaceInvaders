@@ -12,6 +12,11 @@ void welcomeMessage(std::string name){
     return; 
 }
 
+//message that will inform the player that the game is over
+void endGameMessage(){
+    std::cout << "Game Over" << std::endl;
+}
+
 // will stop the game until the user has requested the game to start 
 void waitForEnter(){
 
