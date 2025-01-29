@@ -10,11 +10,13 @@ class gameData{
 public:
     int playerPosition;
     int lives;
+    bool end;
 
-    gameData();
+    void init();
 
     void loseLife();
     void movePlayer(int change);
+    void gameEnd();
 };
 
 #endif

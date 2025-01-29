@@ -3,6 +3,7 @@
 #include <string>
 #include <stdlib.h>
 #include <iostream>
+#include <conio.h>
 
 playerController::playerController(){
     std::cout << "Player Controller Created" << std::endl;
@@ -14,12 +15,16 @@ void playerController::run( gameData &data){
     char input;
 
     while(1){
-        std::cin >> input;
+        input = getch();
 
         if(input == 'a'){
             data.movePlayer(-1);
         }else if(input == 'd'){
             data.movePlayer(1);
+        }else if(input == 27){
+            //esc
+            data.gameEnd();
+            break;
         }
     }
 }

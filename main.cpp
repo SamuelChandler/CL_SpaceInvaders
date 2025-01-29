@@ -14,10 +14,10 @@
 int main(int argc, char* argv[]) {
     std::string name = "World";
     commandSuite* suite;
-    gameData* data = new gameData();
 
-
-    playerController* controller = new playerController();
+    gameData data;
+    data.init();
+    playerController controller;
 
 
     if (argc > 1) {
@@ -43,24 +43,28 @@ int main(int argc, char* argv[]) {
     
     #endif
 
-    //play the welcome message and start upon enter press 
+    //play the welcome message 
     welcomeMessage(name);
+
+    //start upon enter press 
     waitForEnter();
-
     suite->wipeScreen();
-
+    
     //create thread for the player conroller 
-    std::thread controllerThread(&playerController::run,&controller,std::ref(data),123);
+    std::thread controllerThread(&playerController::run,&controller,std::ref(data));
 
-
-    while(1){
+    //display loop, runs in parrallel with the player controller
+    while(!data.end){
         std::this_thread::sleep_for(std::chrono::milliseconds(50));
         suite->resetSize();
         suite->wipeScreen();
-        suite->render(*data);
+        suite->render(data);
     } 
 
+    //wait for controller to finish
     controllerThread.join();
 
+    //end game 
+    suite->wipeScreen();
     return 0;
 }
