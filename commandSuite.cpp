@@ -24,12 +24,22 @@ void commandSuite::resetSize(){
 void commandSuite::render(gameData &data){
     std::cout << "Cannot Render when OS undefined" << std::endl;
 }
+void commandSuite::setCursorPosition(int x, int y){
+    std::cout << "cannot Set Cursor without setting the operating system" << std::endl;
+}
 
 
 LinuxCommandSuite::LinuxCommandSuite(std::string name){
     playerName = name;
     Version = Linux;
     time = 0.0f;
+
+    //create the board
+    for (int y =0; y != GB_Height; ++y){
+        for (int x = 0; x != GB_Width; ++x){
+            gameBoard[x][y] = ' ';
+        }
+    }
 
     std::cout << "command Suite created for Linux user, " << playerName << std::endl;
 }
@@ -46,6 +56,14 @@ WindowsCommandSuite::WindowsCommandSuite(std::string name){
     playerName = name;
     Version = windows;
     time = 0.0f;
+
+    //create the board and display board
+    for (int y =0; y != GB_Height; ++y){
+        for (int x = 0; x != GB_Width; ++x){
+            gameBoard[x][y] = ' ';
+
+        }
+    }
 
     //set the screen size 
     HWND console = GetConsoleWindow();
@@ -73,10 +91,11 @@ void WindowsCommandSuite::resetSize(){
 
 void WindowsCommandSuite::render(gameData &data){
 
+    setCursorPosition(0,0);
     //Player Name and current Score
     std::cout << playerName ;
 
-    for(int x = playerName.length(); x <45 ; x++){
+    for(int x = playerName.length(); x <43 ; x++){
         std::cout << " ";
     } 
 
@@ -88,7 +107,7 @@ void WindowsCommandSuite::render(gameData &data){
     }
 
     //render each row 
-    for(int x = 0; x < 32; x++){
+    for(int x = 0; x < 33; x++){
         std::cout << "\n";
     }
 
@@ -101,7 +120,14 @@ void WindowsCommandSuite::render(gameData &data){
             std::cout << " ";
         }
     }
-    std::cout << std::flush;
+    std::cout.flush();
 
 }
 
+//sets the cursor too the position in the console based on the x,y coordinates
+void WindowsCommandSuite::setCursorPosition(int x, int y){
+    static const HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+    std::cout.flush();
+    COORD coord = { (SHORT)x, (SHORT)y };
+    SetConsoleCursorPosition(hOut, coord);
+}
