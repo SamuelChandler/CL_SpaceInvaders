@@ -27,6 +27,13 @@ void commandSuite::render(gameData &data){
 void commandSuite::setCursorPosition(int x, int y){
     std::cout << "cannot Set Cursor without setting the operating system" << std::endl;
 }
+void commandSuite::updateBoard(gameData &data){
+    for (int y =0; y != GB_Height; ++y){
+        for (int x = 0; x != GB_Width; ++x){
+            gameBoard[x][y] = ' ';
+        }
+    }
+}
 
 
 LinuxCommandSuite::LinuxCommandSuite(std::string name){
@@ -76,6 +83,10 @@ WindowsCommandSuite::WindowsCommandSuite(std::string name){
 
 
 void WindowsCommandSuite::wipeScreen(){
+    //disable cursor
+    system("setterm -cursor off");
+
+    //full clear 
     system("cls");
 }
 
@@ -87,6 +98,18 @@ void WindowsCommandSuite::resetSize(){
     GetWindowRect(console, &r); //save current dimensions
     MoveWindow(console, r.left, r.top, W_WIDTH, W_HEIGHT, TRUE);
 
+}
+
+void WindowsCommandSuite::updateBoard(gameData &data){
+    
+    //update player position
+    for (int x = 0; x != GB_Width; ++x){
+            if(x == data.playerPosition){
+                gameBoard[x][GB_Height-1] = '^';
+            }else{
+                gameBoard[x][GB_Height-1] = ' ';
+            }
+    }
 }
 
 void WindowsCommandSuite::render(gameData &data){
@@ -106,19 +129,11 @@ void WindowsCommandSuite::render(gameData &data){
         std::cout << "=";
     }
 
-    //render each row 
-    for(int x = 0; x < 33; x++){
-        std::cout << "\n";
-    }
-
-    //render Player 
-    for(int x = 0; x < 54; x++){
-        if(x == data.playerPosition){
-            std::cout << "^" ;
+    for(int y = 0; y != GB_Height; ++y){
+        for(int x = 0; x != GB_Width; ++x){
+            std::cout << gameBoard[x][y];
         }
-        else{
-            std::cout << " ";
-        }
+        
     }
     std::cout.flush();
 

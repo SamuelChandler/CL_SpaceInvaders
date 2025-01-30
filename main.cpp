@@ -63,9 +63,11 @@ int main(int argc, char* argv[]) {
     while(!data.end){
 
   
-        std::this_thread::sleep_for(std::chrono::milliseconds(167));
+        std::this_thread::sleep_for(std::chrono::milliseconds(16));
         suite->resetSize();
-        //suite->wipeScreen();
+
+        suite->updateBoard(data);
+
         suite->render(data);
 
         //check time 
@@ -78,7 +80,6 @@ int main(int argc, char* argv[]) {
 
             //update start time 
             start = end;
-
         }
 
     } 

@@ -17,7 +17,7 @@ static const int L_WIDTH = 500;
 static const int L_HEIGHT = 600;
 
 static const int GB_Width = 54;
-static const int GB_Height = 34;
+static const int GB_Height = 33;
 
 class commandSuite{
 
@@ -33,6 +33,7 @@ public:
 
     virtual void wipeScreen();
     virtual void resetSize();
+    virtual void updateBoard(gameData &data);
     virtual void render(gameData &data);
     virtual void setCursorPosition(int x, int y);
 
@@ -54,6 +55,7 @@ public:
 
     void wipeScreen() override;
     void resetSize() override;
+    void updateBoard(gameData &data) override;
     void render(gameData &data) override;
     void setCursorPosition(int x, int y) override;
 
