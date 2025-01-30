@@ -3,13 +3,14 @@
 
 #include <string>
 
-static const int WIDTH = 45;
+static const int WIDTH = 54;
 
 class gameData{
 
 public:
     int playerPosition;
     int lives;
+    int score;
     bool end;
 
     void init();

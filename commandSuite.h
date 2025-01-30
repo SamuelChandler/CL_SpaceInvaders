@@ -10,7 +10,7 @@ enum OS{
     Linux,
 };
 
-static const int W_WIDTH = 500;
+static const int W_WIDTH = 470;
 static const int W_HEIGHT = 600;
 
 static const int L_WIDTH = 500;
@@ -23,7 +23,6 @@ public:
     float time;
     OS Version;
     std::string playerName;
-    int score;
     
     commandSuite();
     commandSuite(std::string name);

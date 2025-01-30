@@ -7,6 +7,7 @@
 //sets up the player data, must be ran before using the data class
 void gameData::init(){
     playerPosition = WIDTH/2;
+    score = 0;
     lives = 3;
     end = false;
 }
@@ -24,8 +25,8 @@ void gameData::movePlayer(int change){
     if(playerPosition < 0){
         playerPosition = 0;
     }
-    else if(playerPosition > WIDTH){
-        playerPosition = WIDTH;
+    else if(playerPosition >= WIDTH){
+        playerPosition = WIDTH-1;
     }
 
 

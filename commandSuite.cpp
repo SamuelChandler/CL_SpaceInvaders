@@ -8,7 +8,6 @@ commandSuite::commandSuite(){
     playerName = "none";
     Version = none;
     time = 0.0f;
-    score = 0;
     
 }
 commandSuite::commandSuite(std::string name){
@@ -31,7 +30,6 @@ LinuxCommandSuite::LinuxCommandSuite(std::string name){
     playerName = name;
     Version = Linux;
     time = 0.0f;
-    score = 0;
 
     std::cout << "command Suite created for Linux user, " << playerName << std::endl;
 }
@@ -48,7 +46,6 @@ WindowsCommandSuite::WindowsCommandSuite(std::string name){
     playerName = name;
     Version = windows;
     time = 0.0f;
-    score = 0;
 
     //set the screen size 
     HWND console = GetConsoleWindow();
@@ -83,7 +80,12 @@ void WindowsCommandSuite::render(gameData &data){
         std::cout << " ";
     } 
 
-    std::cout << "Score: " << score << "\n";
+    std::cout << "Score: " << data.score << "\n";
+
+    //render seperation bar 
+    for(int x = 0; x < 54; x++){
+        std::cout << "=";
+    }
 
     //render each row 
     for(int x = 0; x < 32; x++){
@@ -91,7 +93,7 @@ void WindowsCommandSuite::render(gameData &data){
     }
 
     //render Player 
-    for(int x = 0; x < 45; x++){
+    for(int x = 0; x < 54; x++){
         if(x == data.playerPosition){
             std::cout << "^" ;
         }
@@ -101,7 +103,5 @@ void WindowsCommandSuite::render(gameData &data){
     }
     std::cout << std::flush;
 
-    //Increment the score to detect new render
-    score++;
 }
 
