@@ -32,6 +32,7 @@ public:
     commandSuite(std::string name);
 
     virtual void wipeScreen();
+    virtual void restore();
     virtual void resetSize();
     virtual void updateBoard(gameData &data);
     virtual void render(gameData &data);
@@ -54,6 +55,7 @@ public:
     WindowsCommandSuite(std::string name);
 
     void wipeScreen() override;
+    void restore() override;
     void resetSize() override;
     void updateBoard(gameData &data) override;
     void render(gameData &data) override;

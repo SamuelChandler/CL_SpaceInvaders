@@ -51,13 +51,17 @@ int main(int argc, char* argv[]) {
 
     //start upon enter press 
     waitForEnter();
-    suite->wipeScreen();
+    
     
     //create thread for the player conroller 
     std::thread controllerThread(&playerController::run,&controller,std::ref(data));
+    
+    //clear the screen
+    suite->wipeScreen();
 
     //set the start time variable
     time(&start);
+    
 
     //display loop, runs in parrallel with the player controller
     while(!data.end){
@@ -90,5 +94,9 @@ int main(int argc, char* argv[]) {
     //end game 
     suite->wipeScreen();
     endGameMessage();
+
+    //return to previos settings
+    suite->restore();
+
     return 0;
 }

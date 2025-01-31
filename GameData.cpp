@@ -10,6 +10,8 @@ void gameData::init(){
     score = 0;
     lives = 3;
     end = false;
+
+    enemies.push_back(alien(1,1,'o'));
 }
 
 //player loses a life

@@ -3,6 +3,8 @@
 #include <string>
 #include <windows.h>
 #include <stdlib.h>
+#include <chrono>
+#include <thread>
 
 commandSuite::commandSuite(){
     playerName = "none";
@@ -17,6 +19,9 @@ commandSuite::commandSuite(std::string name){
 }
 void commandSuite::wipeScreen(){
     std::cout << "Cannot Wipe A screen with OS undefined" << std::endl;
+}
+void commandSuite::restore(){
+    std::cout << "Cannot restore with OS undefined" << std::endl;
 }
 void commandSuite::resetSize(){
     std::cout << "Cannot Reset Screen Size with OS undefined" << std::endl;
@@ -84,10 +89,23 @@ WindowsCommandSuite::WindowsCommandSuite(std::string name){
 
 void WindowsCommandSuite::wipeScreen(){
     //disable cursor
-    system("setterm -cursor off");
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    CONSOLE_CURSOR_INFO cursorInfo;
+    GetConsoleCursorInfo(hConsole, &cursorInfo);
+    cursorInfo.bVisible = FALSE;
+    SetConsoleCursorInfo(hConsole, &cursorInfo);
 
     //full clear 
     system("cls");
+}
+
+void WindowsCommandSuite::restore(){
+    //enable cursor
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    CONSOLE_CURSOR_INFO cursorInfo;
+    GetConsoleCursorInfo(hConsole, &cursorInfo);
+    cursorInfo.bVisible = TRUE;
+    SetConsoleCursorInfo(hConsole, &cursorInfo);
 }
 
 //sets the size of the window to the initial values
@@ -101,7 +119,12 @@ void WindowsCommandSuite::resetSize(){
 }
 
 void WindowsCommandSuite::updateBoard(gameData &data){
-    
+
+    //place each alien 
+    for(alien a:data.enemies){
+        gameBoard[a.x][a.y] = a.sprite;
+    }
+
     //update player position
     for (int x = 0; x != GB_Width; ++x){
             if(x == data.playerPosition){
@@ -115,7 +138,7 @@ void WindowsCommandSuite::updateBoard(gameData &data){
 void WindowsCommandSuite::render(gameData &data){
 
     setCursorPosition(0,0);
-    //Player Name and current Score
+    //Player Name and current Scored
     std::cout << playerName ;
 
     for(int x = playerName.length(); x <43 ; x++){
