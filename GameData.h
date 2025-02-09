@@ -12,8 +12,9 @@ public:
     int x;
     int y;
     char sprite;
+    int vel;
 
-    alien(int a, int b, char s): x(a), y(b), sprite(s){};
+    alien(int a, int b, char s, int v): x(a), y(b), sprite(s), vel(v){};
 };
 
 class gameData{
@@ -29,6 +30,7 @@ public:
     void init();
 
     void loseLife();
+    void enemyMovement();
     void movePlayer(int change);
     void gameEnd();
 };

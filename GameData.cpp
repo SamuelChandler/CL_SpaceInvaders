@@ -11,7 +11,8 @@ void gameData::init(){
     lives = 3;
     end = false;
 
-    enemies.push_back(alien(1,1,'o'));
+    enemies.push_back(alien(1,1,'O',1));
+    enemies.push_back(alien(4,1,'Y',-1));
 }
 
 //player loses a life
@@ -30,8 +31,22 @@ void gameData::movePlayer(int change){
     else if(playerPosition >= WIDTH){
         playerPosition = WIDTH-1;
     }
+}
 
+void gameData::enemyMovement(){
+    for(alien a:enemies){
 
+        //update position
+        a.x = a.x + a.vel;
+
+        //swap direction when at an edge
+        if(a.x >= WIDTH){
+            a.vel = -1 * a.vel;
+        }else if(a.x <= 0){
+            a.vel = -1 * a.vel;
+        }
+
+    }
 }
 
 //sets the flag to end the game

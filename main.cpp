@@ -82,6 +82,9 @@ int main(int argc, char* argv[]) {
             //increase score for surviving 
             data.score++;
 
+            //update enemy positions 
+            data.enemyMovement();
+
             //update start time 
             start = end;
         }
