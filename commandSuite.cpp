@@ -120,6 +120,12 @@ void WindowsCommandSuite::resetSize(){
 
 void WindowsCommandSuite::updateBoard(gameData &data){
 
+    for(int y = 0; y != GB_Height; ++y){
+        for(int x = 0; x != GB_Width; ++x){
+            gameBoard[x][y] = ' ';
+        }   
+    }
+
     //place each alien 
     for(alien a:data.enemies){
         gameBoard[a.x][a.y] = a.sprite;
@@ -155,8 +161,7 @@ void WindowsCommandSuite::render(gameData &data){
     for(int y = 0; y != GB_Height; ++y){
         for(int x = 0; x != GB_Width; ++x){
             std::cout << gameBoard[x][y];
-        }
-        
+        }   
     }
     std::cout.flush();
 

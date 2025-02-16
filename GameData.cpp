@@ -34,16 +34,21 @@ void gameData::movePlayer(int change){
 }
 
 void gameData::enemyMovement(){
-    for(alien a:enemies){
+    for(int x = 0; x < enemies.size(); x++){
 
         //update position
-        a.x = a.x + a.vel;
+        enemies[x].x = enemies[x].x + enemies[x].vel;
 
-        //swap direction when at an edge
-        if(a.x >= WIDTH){
-            a.vel = -1 * a.vel;
-        }else if(a.x <= 0){
-            a.vel = -1 * a.vel;
+        //swap direction and descend when at an edge
+        if(enemies[x].x >= WIDTH){
+            
+            enemies[x].vel = -1 * enemies[x].vel;
+            enemies[x].y = enemies[x].y +1;
+
+        }else if(enemies[x].x <= 0){
+            
+            enemies[x].vel = -1 * enemies[x].vel;
+            enemies[x].y = enemies[x].y +1;
         }
 
     }
