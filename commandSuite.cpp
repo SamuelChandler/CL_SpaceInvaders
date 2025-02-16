@@ -131,6 +131,11 @@ void WindowsCommandSuite::updateBoard(gameData &data){
         gameBoard[a.x][a.y] = a.sprite;
     }
 
+    //place bullets 
+    for(const auto& bullet : data.bullets){
+        gameBoard[bullet.first][bullet.second] = '|';
+    }
+
     //update player position
     for (int x = 0; x != GB_Width; ++x){
             if(x == data.playerPosition){

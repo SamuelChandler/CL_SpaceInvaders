@@ -21,6 +21,8 @@ void playerController::run( gameData &data){
             data.movePlayer(-1);
         }else if(input == 'd'){
             data.movePlayer(1);
+        }else if(input == ' '){
+            data.fire();
         }else if(input == 27){
             //esc
             data.gameEnd();

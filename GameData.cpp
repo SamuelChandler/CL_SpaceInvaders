@@ -54,6 +54,10 @@ void gameData::enemyMovement(){
     }
 }
 
+void gameData::fire(){
+    bullets.push_back(std::make_pair(playerPosition,HEIGHT-2));
+}
+
 //sets the flag to end the game
 void gameData::gameEnd(){
     end = true;

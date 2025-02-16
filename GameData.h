@@ -5,6 +5,7 @@
 #include <vector>
 
 static const int WIDTH = 54;
+static const int HEIGHT = 33;
 
 class alien{
 
@@ -26,6 +27,7 @@ public:
     bool end;
 
     std::vector<alien> enemies;
+    std::vector<std::pair<int,int>> bullets;
 
     void init();
 
@@ -33,6 +35,7 @@ public:
     void enemyMovement();
     void movePlayer(int change);
     void gameEnd();
+    void fire();
 };
 
 
